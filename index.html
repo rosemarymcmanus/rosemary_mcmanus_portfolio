@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rosemary McManus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Rosemary McManus, engineering student at Harvey Mudd College. Projects in quantum control software, energy-aware web infrastructure, public data tools, and civil site design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineering drawing sheet. Hero with title block, then project "details" on a measured grid, then a compact timeline. */
+:root {
+  --paper: #f6f7f4;
+  --sheet: #ffffff;
+  --ink: #18242b;
+  --ink-soft: #4c5a62;
+  --rule: #d5dbd9;
+  --grid: rgba(36, 84, 110, 0.07);
+  --accent: #1d5f86;
+  --accent-soft: #e3eef4;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10181d; --sheet: #162128; --ink: #e6ecee; --ink-soft: #9fb0b8;
+    --rule: #2b3a42; --grid: rgba(140, 196, 224, 0.06); --accent: #7cc0e6; --accent-soft: #1b3341;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10181d; --sheet: #162128; --ink: #e6ecee; --ink-soft: #9fb0b8;
+  --rule: #2b3a42; --grid: rgba(140, 196, 224, 0.06); --accent: #7cc0e6; --accent-soft: #1b3341;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Nav */
+nav.top { padding-block: 20px; }
+nav.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.mark { font: 800 1rem/1 var(--display); letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+nav.top ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; flex-wrap: wrap; }
+nav.top ul a { font: 500 0.78rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); text-decoration: none; }
+nav.top ul a:hover { color: var(--accent); }
+
+/* Hero sheet */
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--ink);
+  position: relative;
+}
+.hero { margin-top: 8px; }
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  padding: clamp(24px, 5vw, 56px);
+  align-items: center;
+}
+.eyebrow { font: 500 0.75rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 0 0 14px; }
+h1 {
+  font: 800 clamp(2.4rem, 7vw, 4.6rem)/0.98 var(--display);
+  letter-spacing: -0.015em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.lede { font-size: 1.15rem; line-height: 1.55; max-width: 34em; margin: 0 0 28px; color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 0.85rem/1 var(--mono); letter-spacing: 0.02em;
+  padding: 12px 16px; border: 1px solid var(--ink); color: var(--ink);
+  background: transparent; text-decoration: none; cursor: pointer;
+}
+.btn.primary { background: var(--ink); color: var(--sheet); }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary:hover { background: var(--accent); color: var(--sheet); }
+
+.portrait { width: clamp(150px, 20vw, 210px); margin: 0; }
+.portrait img {
+  display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+  border: 1px solid var(--ink);
+}
+.portrait figcaption { font: 400 0.7rem/1.4 var(--mono); color: var(--ink-soft); margin-top: 8px; letter-spacing: 0.04em; }
+
+/* Title block, as on a drawing sheet */
+.titleblock {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+}
+.titleblock div { padding: 12px 16px; border-left: 1px solid var(--ink); min-width: 0; }
+.titleblock div:first-child { border-left: 0; }
+.titleblock dt { font: 500 0.64rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-bottom: 4px; }
+.titleblock dd { margin: 0; font: 500 0.9rem/1.3 var(--body); overflow-wrap: anywhere; }
+
+/* Sections */
+section { padding-block: 72px 0; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; flex-wrap: wrap; }
+h2 { font: 800 clamp(1.6rem, 3.6vw, 2.2rem)/1.1 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.sec-head p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.project { padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.project.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.detail-tag {
+  position: absolute; top: -1px; right: -1px;
+  font: 500 0.66rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--ink); color: var(--sheet); padding: 6px 10px;
+}
+.meta { font: 400 0.75rem/1.4 var(--mono); color: var(--ink-soft); letter-spacing: 0.03em; margin: 0; }
+h3 { font: 600 1.3rem/1.25 var(--display); margin: 0; text-wrap: balance; padding-right: 72px; }
+.project p { margin: 0; }
+.project ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.chips, .project ul.chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0 !important; margin: auto 0 0 !important; }
+.chips li { font: 500 0.72rem/1 var(--mono); padding: 6px 8px; background: var(--accent-soft); color: var(--ink); }
+.figure {
+  border: 1px solid var(--rule); padding: 20px; background: var(--paper);
+  display: grid; gap: 16px; align-content: start;
+}
+.figure .num { font: 800 2.6rem/1 var(--display); color: var(--accent); font-variant-numeric: tabular-nums; }
+.figure .num small { display: block; font: 400 0.78rem/1.4 var(--mono); color: var(--ink-soft); margin-top: 6px; letter-spacing: 0.02em; }
+.pipeline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font: 500 0.78rem/1 var(--mono); }
+.pipeline span { border: 1px solid var(--ink); padding: 8px 10px; background: var(--sheet); }
+.pipeline i { font-style: normal; color: var(--accent); }
+
+/* Experience */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+.timeline li:last-child { border-bottom: 0; }
+.when { font: 400 0.8rem/1.5 var(--mono); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.role { font: 600 1.05rem/1.35 var(--body); margin: 0; }
+.org { color: var(--ink-soft); margin: 2px 0 8px; font-size: 0.95rem; }
+.timeline p.desc { margin: 0; max-width: 62ch; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.skillset { padding: 24px; min-width: 0; }
+.skillset h3 { font-size: 1rem; padding-right: 0; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--mono); font-weight: 500; color: var(--ink-soft); }
+.skillset .chips { margin: 0 !important; }
+
+/* Education + beyond */
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.card { padding: 28px; min-width: 0; display: grid; gap: 10px; align-content: start; }
+.card p { margin: 0; }
+.coursework { font-size: 0.95rem; color: var(--ink-soft); }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.plain strong { display: block; font-weight: 600; }
+.plain span { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Contact */
+.contact { margin-block: 72px 48px; }
+.contact .inner { padding: clamp(24px, 5vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; }
+.contact h2 { margin-bottom: 8px; }
+.contact p { margin: 0; color: var(--ink-soft); max-width: 44ch; }
+.email-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.email { font: 500 0.95rem/1 var(--mono); padding: 12px 14px; border: 1px dashed var(--ink-soft); user-select: all; overflow-wrap: anywhere; }
+footer { padding-block: 0 40px; font: 400 0.72rem/1.5 var(--mono); color: var(--ink-soft); letter-spacing: 0.04em; }
+
+@media (max-width: 760px) {
+  .hero-body { grid-template-columns: 1fr; gap: 28px; }
+  .portrait { order: -1; width: 140px; }
+  .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .titleblock div:nth-child(3) { border-left: 0; }
+  .titleblock div:nth-child(n+3) { border-top: 1px solid var(--ink); }
+  .projects, .skills, .split { grid-template-columns: 1fr; }
+  .project.feature { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; gap: 6px; }
+  .contact .inner { grid-template-columns: 1fr; }
+  nav.top ul { gap: 14px; }
+}
+
+/* Project images */
+.shot { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.shot figcaption { font: 400 0.72rem/1.4 var(--mono); color: var(--ink-soft); letter-spacing: 0.03em; }
+.zoom { display: block; padding: 0; border: 1px solid var(--rule); background: #fff; cursor: zoom-in; width: 100%; }
+.zoom:hover { border-color: var(--accent); }
+.zoom img { display: block; width: 100%; height: auto; }
+.gallery { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.gallery .zoom img { aspect-ratio: 16 / 11; object-fit: contain; }
+dialog.lightbox { max-width: min(96vw, 1400px); max-height: 94vh; padding: 12px; border: 1px solid var(--ink); background: var(--sheet); color: var(--ink); }
+dialog.lightbox::backdrop { background: rgba(10, 16, 20, 0.75); }
+dialog.lightbox img { display: block; max-width: 100%; max-height: calc(94vh - 80px); margin: 0 auto; background: #fff; }
+dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; font: 400 0.8rem/1.4 var(--mono); }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Case studies */
+.case { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.case h4 { font: 500 0.7rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 0 0 6px; }
+.case p { margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0; }
+.stats div { background: var(--paper); padding: 12px 14px; min-width: 0; }
+.stats dt { font: 500 0.66rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 4px; }
+.stats dd { margin: 0; font: 600 0.95rem/1.35 var(--body); }
+.shot.photo .zoom img { object-fit: cover; }
+.shot.lead .zoom img { aspect-ratio: auto; }
+.gallery.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.project.wide { grid-column: 1 / -1; }
+.gallery.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-column: auto; }
+@media (max-width: 760px) { .gallery.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gallery.g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats { grid-template-columns: 1fr; } }
+.lead-col { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.shot.tall .zoom img { aspect-ratio: 3 / 4; }
+.shot.poster .zoom img { aspect-ratio: 4 / 3; object-position: 50% 45%; }
+</style>
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">R. McManus</a>
+    <ul>
+      <li><a href="#projects">Hardware</a></li>
+      <li><a href="#software">Software</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap">
+    <header class="sheet hero">
+      <div class="hero-body">
+        <div>
+          <p class="eyebrow">Engineering · Harvey Mudd College · Class of 2028</p>
+          <h1>Rosemary McManus</h1>
+          <p class="lede">I'm an engineering student who designs and builds physical things, and the software and data work around them. Recent work includes a welded steel vertical garden built for a campus client, an autonomous water-sensing robot, FEA studies in SolidWorks, and quantum control software on RISC-V.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">See projects</a>
+            <a class="btn" href="https://www.linkedin.com/in/rosemary-mcmanus/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="photo.png" alt="Portrait of Rosemary McManus" width="150" height="200">
+          <figcaption>Claremont, CA</figcaption>
+        </figure>
+      </div>
+      <dl class="titleblock">
+        <div><dt>Degree</dt><dd>B.S. Engineering</dd></div>
+        <div><dt>Graduating</dt><dd>May 2028</dd></div>
+        <div><dt>Distinction</dt><dd>Dean's List 2025–26</dd></div>
+        <div><dt>Tools</dt><dd>SolidWorks · Shop · Python</dd></div>
+      </dl>
+    </header>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="sec-head">
+        <h2 id="projects-h">Mechanical design and hardware</h2>
+        <p>Designed, built, and tested by hand.</p>
+      </div>
+      <div class="projects">
+        <article class="sheet project feature">
+          <span class="detail-tag">Detail A</span>
+          <div class="case">
+            <p class="meta">E4: Intro to Engineering Design and Manufacturing · Harvey Mudd College · Fall 2025 · Team of 4</p>
+            <h3>Plarch: a squirrel-proof vertical garden</h3>
+            <div><h4>Problem</h4><p>A campus client wanted a free-standing vertical garden where students could grow and harvest food. His existing garden was being wiped out by squirrels, and the build had to come in on a $150 budget.</p></div>
+            <div><h4>What we built</h4><p>A welded arch of #3 and #4 rebar holding eight planters on three levels, wrapped in galvanized chicken wire with hinged doors and tied into the client's existing drip irrigation. The shelf levels lock in with welded retainer "teeth" instead of being welded on, so the client can remove levels and move planters for sunlight.</p></div>
+            <div><h4>Testing and iteration</h4>
+              <ul>
+                <li>Modeled the frame in SolidWorks, ran a static FEA, and released a 10-sheet drawing package with BOMs, weld callouts, and tolerances</li>
+                <li>FEA couldn't capture how welding changes rebar, so we built a weld-joint test piece and then a full-size prototype</li>
+                <li>The #3 rebar shelf supports deflected badly once loaded. We welded a #4 bar under each one, which brought it down to slight, temporary flex</li>
+                <li>Tested the chicken-wire door with 10 users, who rated ease of use 4.1 out of 5</li>
+              </ul>
+            </div>
+            <dl class="stats"><div><dt>Load test</dt><dd>80 lb per planter, 2× the design load</dd></div><div><dt>Peak FEA stress</dt><dd>2.16 MPa vs. 180 MPa yield</dd></div><div><dt>Planting area</dt><dd>15.5 sq ft</dd></div><div><dt>Budget</dt><dd>$150.69 of $150, using scavenged planters</dd></div></dl>
+            <ul class="chips" aria-label="Tools"><li>SolidWorks</li><li>FEA</li><li>Engineering drawings</li><li>Welding</li><li>Rebar fabrication</li><li>Load testing</li><li>User testing</li></ul>
+          </div>
+          <div class="lead-col">
+          <figure class="shot photo lead">
+            <button type="button" class="zoom" data-full="img/plarch-in-use.jpg" data-cap="The Plarch in use on campus, planted and growing">
+              <img src="img/plarch-in-use.jpg" alt="The Plarch on campus with plants growing inside the chicken wire" loading="lazy">
+            </button>
+            <figcaption>In use on campus, planted and growing</figcaption>
+          </figure>
+          <figure class="shot photo lead">
+              <button type="button" class="zoom" data-full="img/plarch-welding.jpg" data-cap="Suited up to weld the frame">
+                <img src="img/plarch-welding.jpg" alt="Rosemary in welding jacket, gloves, and helmet in the makerspace" loading="lazy">
+              </button>
+              <figcaption>Suited up to weld the frame</figcaption>
+            </figure>
+          </div>
+          <div class="gallery g3">
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/plarch-built.jpg" data-cap="Load test: 80 lb of rocks in each suspended planter">
+                <img src="img/plarch-built.jpg" alt="The Plarch loaded with rocks in each planter for the load test" loading="lazy">
+              </button>
+              <figcaption>Load test: 80 lb per planter</figcaption>
+            </figure>
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/plarch-door-prototype.jpg" data-cap="Door prototype for user testing">
+                <img src="img/plarch-door-prototype.jpg" alt="Chicken wire door prototype on a short piece of rebar" loading="lazy">
+              </button>
+              <figcaption>Door prototype for user testing</figcaption>
+            </figure>
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/plarch-planter-liner.jpg" data-cap="Tarp-lined planter with drip line">
+                <img src="img/plarch-planter-liner.jpg" alt="Tarp-lined milk crate planter with drip line" loading="lazy">
+              </button>
+              <figcaption>Tarp-lined planter with drip line</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/plarch-fea.jpg" data-cap="Static FEA: peak von Mises stress 2.16 MPa vs. 180 MPa yield">
+                <img src="img/plarch-fea.jpg" alt="SolidWorks FEA plot of von Mises stress on the frame" loading="lazy">
+              </button>
+              <figcaption>FEA: von Mises stress</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/plarch-assembly.jpg" data-cap="Sheet 1: main assembly and BOM">
+                <img src="img/plarch-assembly.jpg" alt="Main assembly drawing with bill of materials" loading="lazy">
+              </button>
+              <figcaption>Sheet 1: main assembly and BOM</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/plarch-arch-drawing.jpg" data-cap="Sheet 5: archway with GD&amp;T">
+                <img src="img/plarch-arch-drawing.jpg" alt="Archway part drawing with dimensions, weld symbols, and a parallelism callout" loading="lazy">
+              </button>
+              <figcaption>Sheet 5: archway with GD&amp;T</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="sheet project">
+          <span class="detail-tag">Detail B</span>
+          <p class="meta">E4: Intro to Engineering Design and Manufacturing · Harvey Mudd College · 2025</p>
+          <h3>Machined soft-face hammer</h3>
+          <p>I machined and assembled a two-faced hammer from a five-sheet production drawing set, working to GD&amp;T callouts on every steel part.</p>
+          <ul>
+            <li>Six parts: AISI 1015 steel head, AISI 4340 hard face, nylon soft face, clear oak handle, set screw, and wedge</li>
+            <li>Held true-position tolerances as tight as 0.001 in at MMC, a 0.5020 +0.0000/−0.0005 in fit on the hard face, and 1/4-20 tapped threads</li>
+            <li>Shaped the oak handle to its section profiles and wedged it into the head so the faces sit flush</li>
+          </ul>
+          <div class="gallery g2">
+            <figure class="shot photo tall">
+              <button type="button" class="zoom" data-full="img/hammer-holding.jpg" data-cap="With the finished hammer">
+                <img src="img/hammer-holding.jpg" alt="Rosemary holding up the finished hammer" loading="lazy">
+              </button>
+              <figcaption>With the finished hammer</figcaption>
+            </figure>
+            <figure class="shot photo tall">
+              <button type="button" class="zoom" data-full="img/hammer.jpg" data-cap="Steel head, nylon soft face, oak handle">
+                <img src="img/hammer.jpg" alt="The finished hammer with steel head, nylon soft face, and oak handle" loading="lazy">
+              </button>
+              <figcaption>Steel head, nylon soft face, oak handle</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/hammer-assembly-drawing.jpg" data-cap="Assembly drawing and BOM">
+                <img src="img/hammer-assembly-drawing.jpg" alt="Hammer assembly drawing with bill of materials" loading="lazy">
+              </button>
+              <figcaption>Assembly drawing and BOM</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/hammer-head-drawing.jpg" data-cap="Head: GD&amp;T callouts">
+                <img src="img/hammer-head-drawing.jpg" alt="Hammer head drawing with GD&amp;T callouts" loading="lazy">
+              </button>
+              <figcaption>Head: GD&amp;T callouts</figcaption>
+            </figure>
+          </div>
+          <ul class="chips" aria-label="Tools"><li>Lathe</li><li>Mill</li><li>Tapping</li><li>GD&amp;T</li><li>Reading drawings</li><li>Woodworking</li></ul>
+        </article>
+
+        <article class="sheet project">
+          <span class="detail-tag">Detail C</span>
+          <p class="meta">SolidWorks · Harvey Mudd College · 2025</p>
+          <h3>Part modeling and drawings</h3>
+          <p>Detailed part drawings I modeled and dimensioned myself, with section views, detail views, and toleranced features.</p>
+          <ul>
+            <li>Pressure plate in millimeters: six bosses on a bolt circle, through bore, section E–E, and a detail of the fillet</li>
+            <li>Rectangular frame with bilateral tolerances down to ±0.011 in</li>
+          </ul>
+          <div class="gallery g2">
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/drawing-pressure-plate.jpg" data-cap="Pressure plate">
+                <img src="img/drawing-pressure-plate.jpg" alt="Pressure plate drawing with section and detail views" loading="lazy">
+              </button>
+              <figcaption>Pressure plate</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/drawing-frame.jpg" data-cap="Toleranced frame">
+                <img src="img/drawing-frame.jpg" alt="Frame part drawing with toleranced dimensions" loading="lazy">
+              </button>
+              <figcaption>Toleranced frame</figcaption>
+            </figure>
+          </div>
+          <ul class="chips" aria-label="Tools"><li>SolidWorks</li><li>Section views</li><li>Tolerancing</li><li>Drawing standards</li></ul>
+        </article>
+
+        <article class="sheet project feature">
+          <span class="detail-tag">Detail D</span>
+          <div class="case">
+            <p class="meta">E80: Experimental Engineering · Harvey Mudd College · Spring 2026 · Team of 4</p>
+            <h3>Autonomous water-sensing robot</h3>
+            <div><h4>Problem</h4><p>Measure chlorophyll, pH, and temperature at Dana Point in the ocean and at a freshwater lake, and test whether the two sites differ.</p></div>
+            <div><h4>What we built</h4><p>An underwater vehicle with a PVC frame, foam flotation, and a sealed electronics box, carrying three sensors with op-amp signal conditioning that we designed: a pH probe, a thermistor circuit, and a light-based chlorophyll sensor.</p></div>
+            <div><h4>Testing and results</h4>
+              <ul>
+                <li>Calibrated the thermistor from 0 to 30 °C and the pH sensor at pH 4, 7, and 12</li>
+                <li>Deployed in the ocean and the lake on a safety tether, with thermometer and pH-strip readings as ground truth</li>
+                <li>pH read 7.9 to 8.0 at Dana Point and 6.8 to 7.0 at the lake, matching the ground truth</li>
+                <li>Lessons learned: the thermistor output railed, a bad solder joint cost us the lake temperature data, and ambient sunlight swamped the chlorophyll signal. Next time we'd use a sensor tuned to algal fluorescence</li>
+              </ul>
+            </div>
+            <ul class="chips" aria-label="Tools"><li>Sensor circuits</li><li>Op-amps</li><li>Calibration</li><li>Field testing</li><li>PVC fabrication</li><li>Data analysis</li></ul>
+          </div>
+          <figure class="shot photo lead">
+              <button type="button" class="zoom" data-full="img/auv-paddleboard.jpg" data-cap="Out on the water at Dana Point for deployment">
+                <img src="img/auv-paddleboard.jpg" alt="Rosemary and a teammate on a paddleboard at Dana Point" loading="lazy">
+              </button>
+              <figcaption>On the water at Dana Point for deployment</figcaption>
+            </figure>
+          <div class="gallery g4">
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/auv-top-clear.jpg" data-cap="Top view of the robot">
+                <img src="img/auv-top-clear.jpg" alt="Top view of the robot showing the PVC frame and electronics box" loading="lazy">
+              </button>
+              <figcaption>Top view of the robot</figcaption>
+            </figure>
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/auv-side.jpg" data-cap="Side view">
+                <img src="img/auv-side.jpg" alt="Side view of the robot" loading="lazy">
+              </button>
+              <figcaption>Side view</figcaption>
+            </figure>
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/auv-sensors.jpg" data-cap="Sensor mounting">
+                <img src="img/auv-sensors.jpg" alt="Sensors mounted on the electronics box" loading="lazy">
+              </button>
+              <figcaption>Sensor mounting</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/auv-circuits.jpg" data-cap="Sensor circuit schematics">
+                <img src="img/auv-circuits.jpg" alt="Hand-drawn schematics of the pH, chlorophyll, and thermistor sensor circuits" loading="lazy">
+              </button>
+              <figcaption>Sensor circuit schematics</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="sheet project wide">
+          <span class="detail-tag">Detail E</span>
+          <p class="meta">Continuum Mechanics · Harvey Mudd College</p>
+          <h3>FEA stress studies in SolidWorks Simulation</h3>
+          <p>I set up and ran static studies to see how stress actually distributes in loaded parts, then probed results at specific nodes.</p>
+          <ul>
+            <li>Cantilever beam with a 1 kN tip load: bending stress (σx) runs from about +1.9 MPa in tension on top to −1.9 MPa in compression on the bottom, peaking at the fixed end</li>
+            <li>Compared shear stress (τxy) and von Mises stress along the same beam</li>
+            <li>Ring loaded on one edge, showing the stress concentration around the hole</li>
+          </ul>
+          <div class="gallery g4">
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/fea-beam-sx.jpg" data-cap="Bending stress σx with probes">
+                <img src="img/fea-beam-sx.jpg" alt="Bending stress plot of a cantilever beam with probed node values" loading="lazy">
+              </button>
+              <figcaption>Bending stress σx with probes</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/fea-beam-vm.jpg" data-cap="Von Mises, deflected shape">
+                <img src="img/fea-beam-vm.jpg" alt="Von Mises stress plot of the deflected beam" loading="lazy">
+              </button>
+              <figcaption>Von Mises, deflected shape</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/fea-beam-tau.jpg" data-cap="Shear stress τxy">
+                <img src="img/fea-beam-tau.jpg" alt="Shear stress plot along the beam with probed values" loading="lazy">
+              </button>
+              <figcaption>Shear stress τxy</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/fea-ring.jpg" data-cap="Stress concentration in a ring">
+                <img src="img/fea-ring.jpg" alt="Von Mises stress in a ring loaded on one edge" loading="lazy">
+              </button>
+              <figcaption>Stress concentration in a ring</figcaption>
+            </figure>
+          </div>
+          <ul class="chips" aria-label="Tools"><li>SolidWorks Simulation</li><li>FEA</li><li>Beam theory</li><li>Stress analysis</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="software" aria-labelledby="software-h">
+      <div class="sec-head">
+        <h2 id="software-h">Software, research, and site design</h2>
+      </div>
+      <div class="projects">
+        <article class="sheet project feature">
+          <span class="detail-tag">Detail F</span>
+          <div style="display:grid;gap:14px;min-width:0">
+            <p class="meta">HRL Laboratories · Industry-sponsored capstone · Aug 2026 – present</p>
+            <h3>Open-source quantum controller on RISC-V</h3>
+            <p>On the Software Interface Team, I'm helping build a maintainable, open-source controller architecture for quantum computing on top of the RISC-V ecosystem. The goal is to lower the barrier for students and educators getting into quantum hardware control.</p>
+            <ul>
+              <li>Translating QICK programs written with its Python API into RISC-Q instructions</li>
+            </ul>
+            <ul class="chips" aria-label="Tools">
+              <li>Python</li><li>RISC-V</li><li>QICK</li><li>Quantum computing</li>
+            </ul>
+          </div>
+          <div class="figure" aria-label="Compilation path">
+            <p class="meta">Compilation path</p>
+            <div class="pipeline">
+              <span>QICK program (Python)</span><i>→</i><span>RISC-Q instructions</span><i>→</i><span>RISC-V controller</span>
+            </div>
+            <p class="meta">Sponsor: HRL Laboratories</p>
+          </div>
+        </article>
+<article class="sheet project">
+          <span class="detail-tag">Detail G</span>
+          <p class="meta">Sustainability and Network Design Lab · HMC · Summer 2026</p>
+          <h3>The energy cost of LLM bot traffic</h3>
+          <p>I measured how bot traffic affects server energy use and carbon emissions, to find backend decisions that reduce a website's environmental footprint.</p>
+          <figure class="shot photo poster">
+              <button type="button" class="zoom" data-full="img/research-poster.jpg" data-cap="Presenting our poster on the energy and carbon impact of LLM traffic">
+                <img src="img/research-poster.jpg" alt="Rosemary and teammates standing beside their research poster on the energy and carbon impact of LLMs" loading="lazy">
+              </button>
+              <figcaption>Presenting our poster on the energy and carbon impact of LLM traffic</figcaption>
+            </figure>
+          <div class="figure">
+            <div class="num">700,000+<small>requests categorized and replayed from historical Apache logs</small></div>
+          </div>
+          <ul>
+            <li>Replayed logs on a Raspberry Pi to measure power draw by traffic type</li>
+            <li>Studied whether a minimal solar-powered server could host the HMC Computer Science Department website</li>
+          </ul>
+          <ul class="chips" aria-label="Tools">
+            <li>Apache logs</li><li>Raspberry Pi</li><li>Power measurement</li>
+          </ul>
+        </article>
+<article class="sheet project">
+          <span class="detail-tag">Detail H</span>
+          <p class="meta">Rose Institute of State and Local Government · 2025 – 2026</p>
+          <h3>California socioeconomic dashboard and map</h3>
+          <p>I built an interactive dashboard and map that make California socioeconomic data easier for the public to explore.</p>
+          <figure class="shot">
+              <button type="button" class="zoom" data-full="img/rose-dashboard.jpg" data-cap="State Metrics Dashboard: choropleth map, rankings, and trends over time">
+                <img src="img/rose-dashboard.jpg" alt="State Metrics Dashboard showing a U.S. population map, California's rank, and a population-over-time chart" loading="lazy">
+              </button>
+              <figcaption>State Metrics Dashboard</figcaption>
+            </figure>
+          <p><a class="btn" href="https://roseinstitute-cmc-claremont.hub.arcgis.com/pages/cost-of-doing-business" target="_blank" rel="noopener">View the live dashboard ↗</a></p>
+          <ul>
+            <li>Compares California against all 50 states and DC on population, economy, education, business, health, and social metrics</li>
+            <li>Includes a map with a 2020 to 2025 time slider, state rankings, multi-state trend charts, and data download, all sourced from public datasets such as the U.S. Census Bureau</li>
+            <li>Researched state and local public policy in a team-based environment</li>
+            <li>Now direct the Data Team, staffing projects on housing construction and the cost of doing business across California cities</li>
+          </ul>
+          <ul class="chips" aria-label="Tools">
+            <li>Interactive maps</li><li>Data visualization</li><li>Public policy</li>
+          </ul>
+        </article>
+<article class="sheet project">
+          <span class="detail-tag">Detail I</span>
+          <p class="meta">Catizone Engineering, P.C. · Larchmont, NY · Summer 2024</p>
+          <h3>Civil site design for multimillion-dollar projects</h3>
+          <p>As a civil engineering intern, I prepared site designs alongside four full-time engineers.</p>
+          <ul>
+            <li>Drafted layout, grading, stormwater management, utility services, and as-built drawings in Civil 3D</li>
+            <li>Assembled submittal packages for stakeholders and clients</li>
+          </ul>
+          <ul class="chips" aria-label="Tools">
+            <li>Civil 3D</li><li>AutoCAD</li><li>Stormwater design</li>
+          </ul>
+        </article>
+<article class="sheet project">
+          <span class="detail-tag">Detail J</span>
+          <p class="meta">Marine Education Center · Mamaroneck, NY · 2022 – 2023</p>
+          <h3>Eelgrass restoration field research</h3>
+          <p>I collected and analyzed data at targeted growth sites to study the restoration of native eelgrass, and later taught visitors about more than 100 local aquatic species.</p>
+          <ul class="chips" aria-label="Tools">
+            <li>Field data collection</li><li>Data analysis</li><li>Science outreach</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-h">
+      <div class="sec-head">
+        <h2 id="experience-h">Experience</h2>
+      </div>
+      <ol class="timeline">
+        <li>
+          <div class="when">Aug 2026 – present</div>
+          <div><p class="role">Capstone, Software Interface Team</p><p class="org">HRL Laboratories (industry-sponsored)</p><p class="desc">Converting QICK Python programs to RISC-Q instructions for an open-source quantum controller.</p></div>
+        </li>
+        <li>
+          <div class="when">May 2026 – present</div>
+          <div><p class="role">Data Team Director</p><p class="org">Rose Institute of State and Local Government</p><p class="desc">Lead, organize, and staff the Data Team's projects, from municipal structure and housing construction to the cost of doing business across California cities.</p></div>
+        </li>
+        <li>
+          <div class="when">May 2026 – Aug 2026</div>
+          <div><p class="role">Undergraduate Researcher</p><p class="org">Sustainability and Network Design Lab, Harvey Mudd College</p><p class="desc">Measured the server-side energy and carbon impact of bot traffic.</p></div>
+        </li>
+        <li>
+          <div class="when">Oct 2025 – May 2026</div>
+          <div><p class="role">Undergraduate Researcher</p><p class="org">Rose Institute of State and Local Government</p><p class="desc">Built an interactive dashboard and map of California socioeconomic data and researched state and local policy.</p></div>
+        </li>
+        <li>
+          <div class="when">May 2024 – Jul 2024</div>
+          <div><p class="role">Civil Engineering Intern</p><p class="org">Catizone Engineering, P.C.</p><p class="desc">Site design in Civil 3D and submittal packages for clients.</p></div>
+        </li>
+        <li>
+          <div class="when">Jun 2022 – Aug 2023</div>
+          <div><p class="role">Wildlife Researcher, then Educational Intern</p><p class="org">Marine Education Center</p><p class="desc">Eelgrass restoration research and public science education.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="sec-head">
+        <h2 id="skills-h">Skills</h2>
+      </div>
+      <div class="skills">
+        <div class="sheet skillset">
+          <h3>Shop and fabrication</h3>
+          <ul class="chips"><li>Mill</li><li>Lathe</li><li>CNC machine</li><li>Bandsaw</li><li>Miter saw</li><li>Laser cutter</li><li>3D printer</li></ul>
+        </div>
+        <div class="sheet skillset">
+          <h3>Programming</h3>
+          <ul class="chips"><li>Python</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li><li>MATLAB</li><li>R</li><li>Racket</li><li>RISC-V</li></ul>
+        </div>
+        <div class="sheet skillset">
+          <h3>Design software</h3>
+          <ul class="chips"><li>SolidWorks</li><li>SolidWorks Simulation</li><li>Civil 3D</li><li>AutoCAD</li><li>Microsoft Office</li></ul>
+        </div>
+        <div class="sheet skillset">
+          <h3>Electronics and test</h3>
+          <ul class="chips"><li>Op-amp sensor circuits</li><li>Sensor calibration</li><li>Raspberry Pi</li><li>Power measurement</li><li>Load testing</li></ul>
+        </div>
+        <div class="sheet skillset">
+          <h3>Languages</h3>
+          <ul class="chips"><li>Spanish, working proficiency (DELE B2)</li><li>Portuguese, basic (A1)</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="edu-h">
+      <div class="sec-head">
+        <h2 id="edu-h">Education and beyond</h2>
+      </div>
+      <div class="split">
+        <div class="sheet card">
+          <p class="meta">Claremont, CA · Expected May 2028</p>
+          <h3 style="padding-right:0">Harvey Mudd College</h3>
+          <p>B.S. Engineering · Dean's List Distinction, 2025–2026</p>
+          <p class="coursework">Coursework: Data Structures, Probability and Statistics, Continuum Mechanics, Differential Equations and Fourier Analysis, Discrete and Continuous Linear Algebra, Intro to Engineering Manufacturing and Design, Multivariable Calculus</p>
+        </div>
+        <div class="sheet card">
+          <p class="meta">Activities</p>
+          <ul class="plain">
+            <li><strong>CMS Cross Country and Track and Field</strong><span>Division III student athlete, Aug 2024 – present</span></li>
+            <li><strong>Joint Music Program Orchestra</strong><span>Cellist (Claremont, Mudd, Pitzer, and Scripps), Aug 2024 – present</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="sheet inner">
+        <div>
+          <h2 id="contact-h">Let's talk</h2>
+          <p>I'm looking for engineering and software internships. The fastest way to reach me is email or LinkedIn.</p>
+        </div>
+        <div class="email-row">
+          <span class="email" id="email">rosemarymcman@gmail.com</span>
+          <button class="btn" type="button" id="copy-email">Copy email</button>
+          <a class="btn" href="https://www.linkedin.com/in/rosemary-mcmanus/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <img id="lb-img" alt="">
+  <div class="lb-bar"><span id="lb-cap"></span><button class="btn" type="button" id="lb-close">Close</button></div>
+</dialog>
+
+<footer>
+  <div class="wrap">Drawn by R. McManus · Sheet 1 of 1 · Rev A, 2026</div>
+</footer>
+
+<script>
+  (function () {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbCap = document.getElementById('lb-cap');
+    document.querySelectorAll('.zoom').forEach(function (b) {
+      b.addEventListener('click', function () {
+        lbImg.src = b.dataset.full; lbImg.alt = b.querySelector('img').alt; lbCap.textContent = b.dataset.cap;
+        if (lb.showModal) lb.showModal();
+      });
+    });
+    document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+  })();
+  (function () {
+    var btn = document.getElementById('copy-email');
+    var email = document.getElementById('email');
+    btn.addEventListener('click', function () {
+      var text = email.textContent.trim();
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(email);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Selected, press Ctrl+C';
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  })();
+</script>
+
+</body>
+</html>
