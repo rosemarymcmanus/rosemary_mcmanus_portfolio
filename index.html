@@ -282,6 +282,51 @@ dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-i
         <article class="sheet project feature">
           <span class="detail-tag">Detail A</span>
           <div class="case">
+            <p class="meta">E80: Experimental Engineering · Harvey Mudd College · Spring 2026 · Team of 4</p>
+            <h3>Autonomous water-sensing robot</h3>
+            <div><h4>Problem</h4><p>Measure chlorophyll, pH, and temperature at Dana Point in the ocean and at a freshwater lake, and test whether the two sites differ.</p></div>
+            <div><h4>What we built</h4><p>An underwater vehicle with a PVC frame, foam flotation, and a sealed electronics box, carrying three sensors with op-amp signal conditioning that we designed: a pH probe, a thermistor circuit, and a light-based chlorophyll sensor.</p></div>
+            <div><h4>Testing and results</h4>
+              <ul>
+                <li>Calibrated the thermistor from 0 to 30 °C and the pH sensor at pH 4, 7, and 12</li>
+                <li>Deployed in the ocean and the lake on a safety tether, with thermometer and pH-strip readings as ground truth</li>
+                <li>pH read 7.9 to 8.0 at Dana Point and 6.8 to 7.0 at the lake, matching the ground truth</li>
+                <li>Lessons learned: the thermistor output railed, a bad solder joint cost us the lake temperature data, and ambient sunlight swamped the chlorophyll signal. Next time we'd use a sensor tuned to algal fluorescence</li>
+              </ul>
+            </div>
+            <ul class="chips" aria-label="Tools"><li>Sensor circuits</li><li>Op-amps</li><li>Calibration</li><li>Field testing</li><li>PVC fabrication</li><li>Data analysis</li></ul>
+          </div>
+          <figure class="shot photo lead">
+              <button type="button" class="zoom" data-full="img/auv-top-clear.jpg" data-cap="Top view of the robot">
+                <img src="img/auv-top-clear.jpg" alt="Top view of the robot showing the PVC frame, foam flotation, and electronics box" loading="lazy">
+              </button>
+              <figcaption>Top view of the robot</figcaption>
+            </figure>
+          <div class="gallery g3">
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/auv-side.jpg" data-cap="Side view">
+                <img src="img/auv-side.jpg" alt="Side view of the robot" loading="lazy">
+              </button>
+              <figcaption>Side view</figcaption>
+            </figure>
+            <figure class="shot photo">
+              <button type="button" class="zoom" data-full="img/auv-sensors.jpg" data-cap="Sensor mounting">
+                <img src="img/auv-sensors.jpg" alt="Sensors mounted on the electronics box" loading="lazy">
+              </button>
+              <figcaption>Sensor mounting</figcaption>
+            </figure>
+            <figure class="shot">
+              <button type="button" class="zoom" data-full="img/auv-circuits.jpg" data-cap="Sensor circuit schematics">
+                <img src="img/auv-circuits.jpg" alt="Hand-drawn schematics of the pH, chlorophyll, and thermistor sensor circuits" loading="lazy">
+              </button>
+              <figcaption>Sensor circuit schematics</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="sheet project feature">
+          <span class="detail-tag">Detail B</span>
+          <div class="case">
             <p class="meta">E4: Intro to Engineering Design and Manufacturing · Harvey Mudd College · Fall 2025 · Team of 4</p>
             <h3>Plarch: a squirrel-proof vertical garden</h3>
             <div><h4>Problem</h4><p>A campus client wanted a free-standing vertical garden where students could grow and harvest food. His existing garden was being wiped out by squirrels, and the build had to come in on a $150 budget.</p></div>
@@ -352,7 +397,7 @@ dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-i
         </article>
 
         <article class="sheet project">
-          <span class="detail-tag">Detail B</span>
+          <span class="detail-tag">Detail C</span>
           <p class="meta">E4: Intro to Engineering Design and Manufacturing · Harvey Mudd College · 2025</p>
           <h3>Machined soft-face hammer</h3>
           <p>I machined and assembled a two-faced hammer from a five-sheet production drawing set, working to GD&amp;T callouts on every steel part.</p>
@@ -391,7 +436,7 @@ dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-i
         </article>
 
         <article class="sheet project">
-          <span class="detail-tag">Detail C</span>
+          <span class="detail-tag">Detail D</span>
           <p class="meta">SolidWorks · Harvey Mudd College · 2025</p>
           <h3>Part modeling and drawings</h3>
           <p>Detailed part drawings I modeled and dimensioned myself, with section views, detail views, and toleranced features.</p>
@@ -414,57 +459,6 @@ dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-i
             </figure>
           </div>
           <ul class="chips" aria-label="Tools"><li>SolidWorks</li><li>Section views</li><li>Tolerancing</li><li>Drawing standards</li></ul>
-        </article>
-
-        <article class="sheet project feature">
-          <span class="detail-tag">Detail D</span>
-          <div class="case">
-            <p class="meta">E80: Experimental Engineering · Harvey Mudd College · Spring 2026 · Team of 4</p>
-            <h3>Autonomous water-sensing robot</h3>
-            <div><h4>Problem</h4><p>Measure chlorophyll, pH, and temperature at Dana Point in the ocean and at a freshwater lake, and test whether the two sites differ.</p></div>
-            <div><h4>What we built</h4><p>An underwater vehicle with a PVC frame, foam flotation, and a sealed electronics box, carrying three sensors with op-amp signal conditioning that we designed: a pH probe, a thermistor circuit, and a light-based chlorophyll sensor.</p></div>
-            <div><h4>Testing and results</h4>
-              <ul>
-                <li>Calibrated the thermistor from 0 to 30 °C and the pH sensor at pH 4, 7, and 12</li>
-                <li>Deployed in the ocean and the lake on a safety tether, with thermometer and pH-strip readings as ground truth</li>
-                <li>pH read 7.9 to 8.0 at Dana Point and 6.8 to 7.0 at the lake, matching the ground truth</li>
-                <li>Lessons learned: the thermistor output railed, a bad solder joint cost us the lake temperature data, and ambient sunlight swamped the chlorophyll signal. Next time we'd use a sensor tuned to algal fluorescence</li>
-              </ul>
-            </div>
-            <ul class="chips" aria-label="Tools"><li>Sensor circuits</li><li>Op-amps</li><li>Calibration</li><li>Field testing</li><li>PVC fabrication</li><li>Data analysis</li></ul>
-          </div>
-          <figure class="shot photo lead">
-              <button type="button" class="zoom" data-full="img/auv-paddleboard.jpg" data-cap="Out on the water at Dana Point for deployment">
-                <img src="img/auv-paddleboard.jpg" alt="Rosemary and a teammate on a paddleboard at Dana Point" loading="lazy">
-              </button>
-              <figcaption>On the water at Dana Point for deployment</figcaption>
-            </figure>
-          <div class="gallery g4">
-            <figure class="shot photo">
-              <button type="button" class="zoom" data-full="img/auv-top-clear.jpg" data-cap="Top view of the robot">
-                <img src="img/auv-top-clear.jpg" alt="Top view of the robot showing the PVC frame and electronics box" loading="lazy">
-              </button>
-              <figcaption>Top view of the robot</figcaption>
-            </figure>
-            <figure class="shot photo">
-              <button type="button" class="zoom" data-full="img/auv-side.jpg" data-cap="Side view">
-                <img src="img/auv-side.jpg" alt="Side view of the robot" loading="lazy">
-              </button>
-              <figcaption>Side view</figcaption>
-            </figure>
-            <figure class="shot photo">
-              <button type="button" class="zoom" data-full="img/auv-sensors.jpg" data-cap="Sensor mounting">
-                <img src="img/auv-sensors.jpg" alt="Sensors mounted on the electronics box" loading="lazy">
-              </button>
-              <figcaption>Sensor mounting</figcaption>
-            </figure>
-            <figure class="shot">
-              <button type="button" class="zoom" data-full="img/auv-circuits.jpg" data-cap="Sensor circuit schematics">
-                <img src="img/auv-circuits.jpg" alt="Hand-drawn schematics of the pH, chlorophyll, and thermistor sensor circuits" loading="lazy">
-              </button>
-              <figcaption>Sensor circuit schematics</figcaption>
-            </figure>
-          </div>
         </article>
 
         <article class="sheet project wide">
@@ -567,7 +561,7 @@ dialog.lightbox .lb-bar { display: flex; justify-content: space-between; align-i
               </button>
               <figcaption>State Metrics Dashboard</figcaption>
             </figure>
-          <p><a class="btn" href="https://roseinstitute-cmc-claremont.hub.arcgis.com/pages/cost-of-doing-business" target="_blank" rel="noopener">View the live dashboard ↗</a></p>
+          <p><a class="btn" href="https://roseinstitute-cmc-claremont.hub.arcgis.com/pages/state-dashboard-page" target="_blank" rel="noopener">View the live dashboard ↗</a></p>
           <ul>
             <li>Compares California against all 50 states and DC on population, economy, education, business, health, and social metrics</li>
             <li>Includes a map with a 2020 to 2025 time slider, state rankings, multi-state trend charts, and data download, all sourced from public datasets such as the U.S. Census Bureau</li>
